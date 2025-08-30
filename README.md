@@ -267,4 +267,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 **Made with ❤️ for simple photo editing needs**
 
-*Quick and easy photo editing, right in your browser.*
+_Quick and easy photo editing, right in your browser._

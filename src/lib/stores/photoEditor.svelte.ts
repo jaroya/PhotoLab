@@ -8,6 +8,15 @@ export function createPhotoEditorStore() {
 	let brightness = $state(0);
 	let contrast = $state(0);
 	let rotation = $state(0);
+	let saturation = $state(0);
+	let vibrance = $state(0);
+	let exposure = $state(0);
+	let highlights = $state(0);
+	let shadows = $state(0);
+	let whites = $state(0);
+	let blacks = $state(0);
+	let clarity = $state(0);
+	let dehaze = $state(0);
 	let showControls = $state(false);
 
 	// Drawing state
@@ -65,6 +74,60 @@ export function createPhotoEditorStore() {
 		set rotation(value: number) {
 			rotation = value;
 		},
+		get saturation() {
+			return saturation;
+		},
+		set saturation(value: number) {
+			saturation = value;
+		},
+		get vibrance() {
+			return vibrance;
+		},
+		set vibrance(value: number) {
+			vibrance = value;
+		},
+		get exposure() {
+			return exposure;
+		},
+		set exposure(value: number) {
+			exposure = value;
+		},
+		get highlights() {
+			return highlights;
+		},
+		set highlights(value: number) {
+			highlights = value;
+		},
+		get shadows() {
+			return shadows;
+		},
+		set shadows(value: number) {
+			shadows = value;
+		},
+		get whites() {
+			return whites;
+		},
+		set whites(value: number) {
+			whites = value;
+		},
+		get blacks() {
+			return blacks;
+		},
+		set blacks(value: number) {
+			blacks = value;
+		},
+		get clarity() {
+			return clarity;
+		},
+		set clarity(value: number) {
+			clarity = value;
+		},
+		get dehaze() {
+			return dehaze;
+		},
+		set dehaze(value: number) {
+			dehaze = value;
+		},
 		get brushSize() {
 			return brushSize;
 		},
@@ -106,6 +169,15 @@ export function createPhotoEditorStore() {
 			brightness = 0;
 			contrast = 0;
 			rotation = 0;
+			saturation = 0;
+			vibrance = 0;
+			exposure = 0;
+			highlights = 0;
+			shadows = 0;
+			whites = 0;
+			blacks = 0;
+			clarity = 0;
+			dehaze = 0;
 			activeFilter = 'none';
 			drawingMode = false;
 		},
@@ -115,6 +187,15 @@ export function createPhotoEditorStore() {
 			brightness = 0;
 			contrast = 0;
 			rotation = 0;
+			saturation = 0;
+			vibrance = 0;
+			exposure = 0;
+			highlights = 0;
+			shadows = 0;
+			whites = 0;
+			blacks = 0;
+			clarity = 0;
+			dehaze = 0;
 			activeFilter = 'none';
 			drawingMode = false;
 			ctx = null;

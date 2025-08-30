@@ -16,8 +16,8 @@
 			</div>
 			<h3 class="mb-2 text-lg font-semibold text-gray-900">Essential Tools</h3>
 			<p class="text-sm text-gray-600">
-				Basic editing tools including brightness, contrast, rotation, filters, and drawing
-				with real-time preview.
+				Basic editing tools including brightness, contrast, rotation, filters, and drawing with
+				real-time preview.
 			</p>
 		</div>
 		<div class="rounded-lg bg-white p-6 text-center shadow-sm">

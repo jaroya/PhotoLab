@@ -7,7 +7,7 @@ describe('/+page.svelte', () => {
 	it('should render main heading', async () => {
 		render(Page);
 
-		const heading = page.getByRole('heading', { name: 'Professional Photo Editor' });
+		const heading = page.getByRole('heading', { name: 'Simple Photo Editor' });
 		await expect.element(heading).toBeInTheDocument();
 	});
 });

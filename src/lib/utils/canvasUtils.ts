@@ -64,7 +64,20 @@ export function drawImage(store: PhotoEditorStore, applyFilters: () => void) {
 	ctx.restore();
 
 	// Apply filters if there are any adjustments
-	if (store.brightness !== 0 || store.contrast !== 0 || store.activeFilter !== 'none') {
+	if (
+		store.exposure !== 0 ||
+		store.brightness !== 0 ||
+		store.contrast !== 0 ||
+		store.highlights !== 0 ||
+		store.shadows !== 0 ||
+		store.whites !== 0 ||
+		store.blacks !== 0 ||
+		store.saturation !== 0 ||
+		store.vibrance !== 0 ||
+		store.clarity !== 0 ||
+		store.dehaze !== 0 ||
+		store.activeFilter !== 'none'
+	) {
 		applyFilters();
 	}
 }

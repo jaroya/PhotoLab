@@ -5,8 +5,8 @@
 	<div class="mx-auto max-w-3xl rounded-lg bg-white p-6 shadow-sm sm:p-8">
 		<div class="prose prose-gray mx-auto">
 			<p class="mb-4 text-sm text-gray-600 sm:text-base">
-				PhotoLab uses browser technology to edit your photos quickly, without ever
-				leaving your device. Here's how it works:
+				PhotoLab uses browser technology to edit your photos quickly, without ever leaving your
+				device. Here's how it works:
 			</p>
 			<div class="space-y-4">
 				<div class="flex gap-3 sm:gap-4">
@@ -34,12 +34,10 @@
 						</div>
 					</div>
 					<div>
-						<h4 class="text-sm font-semibold text-gray-900 sm:text-base">
-							Edit with Simple Tools
-						</h4>
+						<h4 class="text-sm font-semibold text-gray-900 sm:text-base">Edit with Simple Tools</h4>
 						<p class="text-xs text-gray-600 sm:text-sm">
-							Adjust brightness, contrast, and rotation with real-time preview. Apply basic
-							filters or add simple drawings. Everything updates as you work.
+							Adjust brightness, contrast, and rotation with real-time preview. Apply basic filters
+							or add simple drawings. Everything updates as you work.
 						</p>
 					</div>
 				</div>
@@ -56,8 +54,8 @@
 							Download Your Edited Photo
 						</h4>
 						<p class="text-xs text-gray-600 sm:text-sm">
-							Once you're happy with your edits, download your photo instantly. The entire
-							process takes just seconds.
+							Once you're happy with your edits, download your photo instantly. The entire process
+							takes just seconds.
 						</p>
 					</div>
 				</div>

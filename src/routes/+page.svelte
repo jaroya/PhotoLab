@@ -4,7 +4,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
 	import PhotoCanvas from '$lib/components/PhotoCanvas.svelte';
-	import ControlsPanel from '$lib/components/ControlsPanel.svelte';
+	import ToolsPanel from '$lib/components/ToolsPanel.svelte';
 	import FeaturesSection from '$lib/sections/FeaturesSection.svelte';
 	import HowItWorksSection from '$lib/sections/HowItWorksSection.svelte';
 	import PhotoEditingUseCasesSection from '$lib/sections/PhotoEditingUseCasesSection.svelte';
@@ -138,29 +138,50 @@
 			<!-- Editor Interface -->
 			<div class="mb-6 flex items-center justify-between">
 				<h2 class="text-2xl font-bold text-gray-900">Edit Your Photo</h2>
-				<Button variant="outline" size="sm" onclick={handleNewImage}>Upload New Photo</Button>
+				<div class="flex gap-2">
+					<Button variant="secondary" size="sm" onclick={handleReset}>Reset</Button>
+					<Button variant="primary" size="sm" onclick={handleDownload}>
+						<svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+							/>
+						</svg>
+						Download
+					</Button>
+					<Button variant="outline" size="sm" onclick={handleNewImage}>Upload New Photo</Button>
+				</div>
 			</div>
 
-			<div class="grid gap-6 lg:grid-cols-4 lg:gap-8">
-				<!-- Canvas Area -->
-				<div class="order-2 lg:order-1 lg:col-span-3">
+			<div class="space-y-6">
+				<!-- Canvas Area (Full Width) -->
+				<div>
 					<PhotoCanvas
 						drawingMode={store.drawingMode}
 						onStartDrawing={handleStartDrawing}
 						onDraw={handleDraw}
 						onStopDrawing={handleStopDrawing}
-						onReset={handleReset}
-						onDownload={handleDownload}
 						onCanvasMount={(canvas) => store.setCanvas(canvas)}
 					/>
 				</div>
 
-				<!-- Controls Panel -->
-				<div class="order-1 lg:order-2 lg:col-span-1">
-					<ControlsPanel
+				<!-- Tools Panel (Bottom) -->
+				<div>
+					<ToolsPanel
 						bind:brightness={store.brightness}
 						bind:contrast={store.contrast}
 						bind:rotation={store.rotation}
+						bind:saturation={store.saturation}
+						bind:vibrance={store.vibrance}
+						bind:exposure={store.exposure}
+						bind:highlights={store.highlights}
+						bind:shadows={store.shadows}
+						bind:whites={store.whites}
+						bind:blacks={store.blacks}
+						bind:clarity={store.clarity}
+						bind:dehaze={store.dehaze}
 						activeFilter={store.activeFilter}
 						drawingMode={store.drawingMode}
 						bind:brushSize={store.brushSize}
@@ -168,6 +189,15 @@
 						onBrightnessChange={updateImage}
 						onContrastChange={updateImage}
 						onRotationChange={updateImage}
+						onSaturationChange={updateImage}
+						onVibranceChange={updateImage}
+						onExposureChange={updateImage}
+						onHighlightsChange={updateImage}
+						onShadowsChange={updateImage}
+						onWhitesChange={updateImage}
+						onBlacksChange={updateImage}
+						onClarityChange={updateImage}
+						onDehazeChange={updateImage}
 						onFilterChange={handleFilterChange}
 						onDrawingModeToggle={handleDrawingModeToggle}
 					/>

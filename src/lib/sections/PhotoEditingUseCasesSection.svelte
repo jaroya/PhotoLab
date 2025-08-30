@@ -15,12 +15,10 @@
 		<div class="rounded-lg bg-white p-6 shadow-sm">
 			<h3 class="mb-3 text-lg font-semibold text-gray-900">💼 Basic Photo Touch-ups</h3>
 			<p class="mb-2 text-sm text-gray-600">
-				Improve photos for resumes, LinkedIn profiles, or presentations. Adjust
-				brightness, contrast, or rotation to make your photos look better.
+				Improve photos for resumes, LinkedIn profiles, or presentations. Adjust brightness,
+				contrast, or rotation to make your photos look better.
 			</p>
-			<p class="text-xs text-gray-500">
-				Best tools: Brightness/contrast adjustments, rotation
-			</p>
+			<p class="text-xs text-gray-500">Best tools: Brightness/contrast adjustments, rotation</p>
 		</div>
 		<div class="rounded-lg bg-white p-6 shadow-sm">
 			<h3 class="mb-3 text-lg font-semibold text-gray-900">🎨 Creative Filter Applications</h3>
