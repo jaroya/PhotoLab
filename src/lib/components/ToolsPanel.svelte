@@ -36,6 +36,7 @@
 		drawingMode: boolean;
 		brushSize: number;
 		brushColor: string;
+		onUndo: () => void;
 		onBrightnessChange: () => void;
 		onContrastChange: () => void;
 		onRotationChange: () => void;
@@ -87,6 +88,7 @@
 		drawingMode,
 		brushSize = $bindable(),
 		brushColor = $bindable(),
+		onUndo,
 		onBrightnessChange,
 		onContrastChange,
 		onRotationChange,
@@ -188,7 +190,7 @@
 		{:else if activeTab === 'filters'}
 			<FiltersTab {activeFilter} {onFilterChange} />
 		{:else if activeTab === 'draw'}
-			<DrawTab bind:brushSize bind:brushColor />
+			<DrawTab bind:brushSize bind:brushColor {onUndo} />
 		{/if}
 	</div>
 </div>

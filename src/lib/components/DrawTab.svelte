@@ -1,10 +1,12 @@
 <script lang="ts">
+	import Button from './Button.svelte';
 	type Props = {
 		brushSize: number;
 		brushColor: string;
+		onUndo: () => void;
 	};
 
-	let { brushSize = $bindable(), brushColor = $bindable() }: Props = $props();
+	let { brushSize = $bindable(), brushColor = $bindable(), onUndo }: Props = $props();
 
 	const presetColors = [
 		'#000000',
@@ -28,11 +30,24 @@
 
 <div class="space-y-6">
 	<!-- Drawing Tools Header -->
-	<div>
-		<h3 class="text-lg font-medium text-gray-900">Drawing Tools</h3>
-		<p class="mt-1 text-sm text-gray-600">
-			Draw mode is automatically active when this tab is selected.
-		</p>
+	<div class="flex items-center justify-between">
+		<div>
+			<h3 class="text-lg font-medium text-gray-900">Drawing Tools</h3>
+			<p class="mt-1 text-sm text-gray-600">
+				Draw mode is automatically active when this tab is selected.
+			</p>
+		</div>
+		<Button variant="secondary" size="sm" onclick={onUndo}>
+			<svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					stroke-width="2"
+					d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+				/>
+			</svg>
+			Undo Drawing
+		</Button>
 	</div>
 
 	<!-- Drawing Controls (always visible in draw tab) -->

@@ -82,6 +82,12 @@
 		store.newImage();
 	}
 
+	function handleUndo() {
+		if (store.undo()) {
+			// No need to redraw since undo restores canvas directly
+		}
+	}
+
 	function handleFilterChange(
 		filter:
 			| 'none'
@@ -204,6 +210,7 @@
 						drawingMode={store.drawingMode}
 						bind:brushSize={store.brushSize}
 						bind:brushColor={store.brushColor}
+						onUndo={handleUndo}
 						onBrightnessChange={updateImage}
 						onContrastChange={updateImage}
 						onRotationChange={updateImage}

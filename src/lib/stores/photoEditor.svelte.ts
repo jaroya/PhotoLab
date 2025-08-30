@@ -45,6 +45,10 @@ export function createPhotoEditorStore() {
 		| 'cyberpunk'
 	>('none');
 
+	// Undo history
+	const undoHistory = $state<ImageData[]>([]);
+	const maxHistorySize = $state(20); // Keep last 20 states
+
 	// Debouncing
 	let updateTimeout: ReturnType<typeof setTimeout> | null = null;
 
@@ -214,7 +218,8 @@ export function createPhotoEditorStore() {
 			clarity = 0;
 			dehaze = 0;
 			activeFilter = 'none';
-			drawingMode = false;
+			// Don't change drawingMode - let tab switching logic handle it
+			undoHistory.length = 0;
 		},
 
 		newImage: () => {
@@ -235,6 +240,35 @@ export function createPhotoEditorStore() {
 			drawingMode = false;
 			ctx = null;
 			image = null;
+			undoHistory.length = 0;
+		},
+
+		// Undo functionality
+		saveState: () => {
+			if (!ctx || !canvas) return;
+
+			const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+			undoHistory.push(imageData);
+
+			// Limit history size
+			if (undoHistory.length > maxHistorySize) {
+				undoHistory.shift();
+			}
+		},
+
+		undo: () => {
+			if (!ctx || !canvas || undoHistory.length === 0) return false;
+
+			const previousState = undoHistory.pop();
+			if (previousState) {
+				ctx.putImageData(previousState, 0, 0);
+				return true;
+			}
+			return false;
+		},
+
+		clearHistory: () => {
+			undoHistory.length = 0;
 		},
 
 		// Debounced update

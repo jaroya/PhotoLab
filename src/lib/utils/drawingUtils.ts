@@ -11,6 +11,9 @@ export function startDrawing(event: MouseEvent, store: PhotoEditorStore) {
 
 	if (!store.drawingMode || !ctx || !canvas) return;
 
+	// Save canvas state before starting to draw (for undo)
+	store.saveState();
+
 	store.setIsDrawing(true);
 	const coords = getCanvasCoordinates(event, canvas);
 
