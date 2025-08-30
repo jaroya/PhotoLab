@@ -3,9 +3,14 @@
 	import Button from '$lib/components/Button.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import Footer from '$lib/components/Footer.svelte';
-	import Features from '$lib/components/Features.svelte';
 	import PhotoCanvas from '$lib/components/PhotoCanvas.svelte';
 	import ControlsPanel from '$lib/components/ControlsPanel.svelte';
+	import FeaturesSection from '$lib/sections/FeaturesSection.svelte';
+	import HowItWorksSection from '$lib/sections/HowItWorksSection.svelte';
+	import PhotoEditingUseCasesSection from '$lib/sections/PhotoEditingUseCasesSection.svelte';
+	import SupportedFormatsSection from '$lib/sections/SupportedFormatsSection.svelte';
+	import PhotoEditingTipsSection from '$lib/sections/PhotoEditingTipsSection.svelte';
+	import FAQSection from '$lib/sections/FAQSection.svelte';
 	import { createPhotoEditorStore } from '$lib/stores/photoEditor.svelte.js';
 	import { setupCanvas, drawImage, downloadImage } from '$lib/utils/canvasUtils.js';
 	import { applyFilters, loadImage } from '$lib/utils/imageProcessing.js';
@@ -88,10 +93,14 @@
 </script>
 
 <svelte:head>
-	<title>PhotoLab - Free Online Photo Editor</title>
+	<title>PhotoLab - Free Online Photo Editor | Professional Image Editing Tools</title>
 	<meta
 		name="description"
-		content="Free online photo editor with filters, adjustments, and drawing tools. Edit your images directly in your browser - no signup required."
+		content="Professional photo editing tools right in your browser. Adjust brightness, contrast, apply filters, draw annotations, and more. Support for JPG, PNG, WebP, GIF. Fast, free, secure - no signup required."
+	/>
+	<meta
+		name="keywords"
+		content="photo editor, online photo editor, image editor, free photo editing, filters, brightness, contrast, image adjustments, photo filters, drawing tools, browser photo editor"
 	/>
 </svelte:head>
 
@@ -101,23 +110,29 @@
 	<!-- Main Content -->
 	<main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 		{#if !store.showControls}
-			<!-- Upload Section -->
+			<!-- Hero Section -->
 			<div class="py-12">
 				<div class="mb-12 text-center">
-					<h2 class="mb-4 text-4xl font-bold text-gray-900">Edit Photos Online, Instantly</h2>
-					<p class="mx-auto max-w-2xl text-xl text-gray-600">
-						Professional photo editing tools right in your browser.
-					</p>
-					<p class="mx-auto max-w-2xl text-xl text-gray-600">
-						No downloads, no accounts, just pure creativity.
+					<h1 class="mb-4 text-2xl font-bold text-gray-900 sm:text-4xl md:text-5xl">
+						Professional Photo Editor
+					</h1>
+					<p class="mx-auto max-w-2xl text-base text-gray-600 sm:text-lg">
+						Edit photos online with professional tools.<br />
+						Fast, free, and secure - all processing happens in your browser.
 					</p>
 				</div>
-
-				<Features />
 
 				<div class="mx-auto max-w-2xl">
 					<FileUpload onUpload={handleFileUpload} class="mb-8" />
 				</div>
+
+				<!-- New comprehensive content sections -->
+				<FeaturesSection />
+				<HowItWorksSection />
+				<PhotoEditingUseCasesSection />
+				<SupportedFormatsSection />
+				<PhotoEditingTipsSection />
+				<FAQSection />
 			</div>
 		{:else}
 			<!-- Editor Interface -->

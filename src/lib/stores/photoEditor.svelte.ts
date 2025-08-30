@@ -24,25 +24,59 @@ export function createPhotoEditorStore() {
 
 	return {
 		// Direct property access (used in templates)
-		get canvas() { return canvas; },
-		get ctx() { return ctx; },
-		get image() { return image; },
-		get showControls() { return showControls; },
-		get isDrawing() { return isDrawing; },
-		get drawingMode() { return drawingMode; },
-		get activeFilter() { return activeFilter; },
+		get canvas() {
+			return canvas;
+		},
+		get ctx() {
+			return ctx;
+		},
+		get image() {
+			return image;
+		},
+		get showControls() {
+			return showControls;
+		},
+		get isDrawing() {
+			return isDrawing;
+		},
+		get drawingMode() {
+			return drawingMode;
+		},
+		get activeFilter() {
+			return activeFilter;
+		},
 
 		// Bindable properties for sliders
-		get brightness() { return brightness; },
-		set brightness(value: number) { brightness = value; },
-		get contrast() { return contrast; },
-		set contrast(value: number) { contrast = value; },
-		get rotation() { return rotation; },
-		set rotation(value: number) { rotation = value; },
-		get brushSize() { return brushSize; },
-		set brushSize(value: number) { brushSize = value; },
-		get brushColor() { return brushColor; },
-		set brushColor(value: string) { brushColor = value; },
+		get brightness() {
+			return brightness;
+		},
+		set brightness(value: number) {
+			brightness = value;
+		},
+		get contrast() {
+			return contrast;
+		},
+		set contrast(value: number) {
+			contrast = value;
+		},
+		get rotation() {
+			return rotation;
+		},
+		set rotation(value: number) {
+			rotation = value;
+		},
+		get brushSize() {
+			return brushSize;
+		},
+		set brushSize(value: number) {
+			brushSize = value;
+		},
+		get brushColor() {
+			return brushColor;
+		},
+		set brushColor(value: string) {
+			brushColor = value;
+		},
 
 		// Only include setters that are actually used
 		setCanvas: (newCanvas: HTMLCanvasElement) => {

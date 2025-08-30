@@ -69,7 +69,6 @@ export function drawImage(store: PhotoEditorStore, applyFilters: () => void) {
 	}
 }
 
-
 export function downloadImage(canvas: HTMLCanvasElement | null) {
 	if (!canvas) return;
 
