@@ -3,7 +3,6 @@ export function createPhotoEditorStore() {
 	let canvas = $state<HTMLCanvasElement | null>(null);
 	let ctx = $state<CanvasRenderingContext2D | null>(null);
 	let image = $state<HTMLImageElement | null>(null);
-	let originalImageData = $state<ImageData | null>(null);
 
 	// Editor state
 	let brightness = $state(0);
@@ -24,48 +23,28 @@ export function createPhotoEditorStore() {
 	let updateTimeout: ReturnType<typeof setTimeout> | null = null;
 
 	return {
-		// Getters
-		get canvas() {
-			return canvas;
-		},
-		get ctx() {
-			return ctx;
-		},
-		get image() {
-			return image;
-		},
-		get originalImageData() {
-			return originalImageData;
-		},
-		get brightness() {
-			return brightness;
-		},
-		get contrast() {
-			return contrast;
-		},
-		get rotation() {
-			return rotation;
-		},
-		get showControls() {
-			return showControls;
-		},
-		get isDrawing() {
-			return isDrawing;
-		},
-		get drawingMode() {
-			return drawingMode;
-		},
-		get brushSize() {
-			return brushSize;
-		},
-		get brushColor() {
-			return brushColor;
-		},
-		get activeFilter() {
-			return activeFilter;
-		},
+		// Direct property access (used in templates)
+		get canvas() { return canvas; },
+		get ctx() { return ctx; },
+		get image() { return image; },
+		get showControls() { return showControls; },
+		get isDrawing() { return isDrawing; },
+		get drawingMode() { return drawingMode; },
+		get activeFilter() { return activeFilter; },
 
-		// Setters
+		// Bindable properties for sliders
+		get brightness() { return brightness; },
+		set brightness(value: number) { brightness = value; },
+		get contrast() { return contrast; },
+		set contrast(value: number) { contrast = value; },
+		get rotation() { return rotation; },
+		set rotation(value: number) { rotation = value; },
+		get brushSize() { return brushSize; },
+		set brushSize(value: number) { brushSize = value; },
+		get brushColor() { return brushColor; },
+		set brushColor(value: string) { brushColor = value; },
+
+		// Only include setters that are actually used
 		setCanvas: (newCanvas: HTMLCanvasElement) => {
 			canvas = newCanvas;
 		},
@@ -75,18 +54,6 @@ export function createPhotoEditorStore() {
 		setImage: (newImage: HTMLImageElement) => {
 			image = newImage;
 		},
-		setOriginalImageData: (data: ImageData) => {
-			originalImageData = data;
-		},
-		setBrightness: (value: number) => {
-			brightness = value;
-		},
-		setContrast: (value: number) => {
-			contrast = value;
-		},
-		setRotation: (value: number) => {
-			rotation = value;
-		},
 		setShowControls: (value: boolean) => {
 			showControls = value;
 		},
@@ -95,12 +62,6 @@ export function createPhotoEditorStore() {
 		},
 		setDrawingMode: (value: boolean) => {
 			drawingMode = value;
-		},
-		setBrushSize: (value: number) => {
-			brushSize = value;
-		},
-		setBrushColor: (value: string) => {
-			brushColor = value;
 		},
 		setActiveFilter: (filter: 'none' | 'grayscale' | 'sepia' | 'invert') => {
 			activeFilter = filter;
@@ -124,7 +85,6 @@ export function createPhotoEditorStore() {
 			drawingMode = false;
 			ctx = null;
 			image = null;
-			originalImageData = null;
 		},
 
 		// Debounced update
@@ -133,13 +93,6 @@ export function createPhotoEditorStore() {
 				clearTimeout(updateTimeout);
 			}
 			updateTimeout = setTimeout(callback, 16); // ~60fps
-		},
-
-		clearUpdateTimeout: () => {
-			if (updateTimeout) {
-				clearTimeout(updateTimeout);
-				updateTimeout = null;
-			}
 		}
 	};
 }

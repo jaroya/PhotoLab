@@ -7,12 +7,7 @@
 	import PhotoCanvas from '$lib/components/PhotoCanvas.svelte';
 	import ControlsPanel from '$lib/components/ControlsPanel.svelte';
 	import { createPhotoEditorStore } from '$lib/stores/photoEditor.svelte.js';
-	import {
-		setupCanvas,
-		drawImage,
-		saveOriginalImageData,
-		downloadImage
-	} from '$lib/utils/canvasUtils.js';
+	import { setupCanvas, drawImage, downloadImage } from '$lib/utils/canvasUtils.js';
 	import { applyFilters, loadImage } from '$lib/utils/imageProcessing.js';
 	import { startDrawing, draw, stopDrawing } from '$lib/utils/drawingUtils.js';
 
@@ -35,11 +30,7 @@
 
 			// Use setTimeout to ensure DOM has updated with the new canvas element
 			setTimeout(async () => {
-				await setupCanvas(
-					store,
-					() => drawImageWrapper(),
-					() => saveOriginalImageDataWrapper()
-				);
+				await setupCanvas(store, () => drawImageWrapper());
 			}, 0);
 		} catch (error) {
 			console.error('Error loading image:', error);
@@ -49,10 +40,6 @@
 	// Wrapper functions for store integration
 	function drawImageWrapper() {
 		drawImage(store, () => applyFilters(store));
-	}
-
-	function saveOriginalImageDataWrapper() {
-		saveOriginalImageData(store);
 	}
 
 	function updateImage() {

@@ -1,10 +1,6 @@
 import type { PhotoEditorStore } from '../stores/photoEditor.svelte.js';
 
-export function setupCanvas(
-	store: PhotoEditorStore,
-	drawImage: () => void,
-	saveOriginalImageData: () => void
-) {
+export function setupCanvas(store: PhotoEditorStore, drawImage: () => void) {
 	return new Promise<void>((resolve) => {
 		requestAnimationFrame(() => {
 			const canvas = store.canvas;
@@ -42,7 +38,6 @@ export function setupCanvas(
 			canvas.height = height;
 
 			drawImage();
-			saveOriginalImageData();
 			resolve();
 		});
 	});
@@ -74,15 +69,6 @@ export function drawImage(store: PhotoEditorStore, applyFilters: () => void) {
 	}
 }
 
-export function saveOriginalImageData(store: PhotoEditorStore) {
-	const ctx = store.ctx;
-	const canvas = store.canvas;
-
-	if (ctx && canvas) {
-		const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
-		store.setOriginalImageData(data);
-	}
-}
 
 export function downloadImage(canvas: HTMLCanvasElement | null) {
 	if (!canvas) return;
