@@ -1,17 +1,12 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-
 	interface Props {
 		accept?: string;
 		multiple?: boolean;
 		class?: string;
+		onUpload?: (files: File[]) => void;
 	}
 
-	let { accept = 'image/*', multiple = false, class: className = '' }: Props = $props();
-
-	const dispatch = createEventDispatcher<{
-		upload: File[];
-	}>();
+	let { accept = 'image/*', multiple = false, class: className = '', onUpload }: Props = $props();
 
 	let dragActive = $state(false);
 	let fileInput: HTMLInputElement;
@@ -26,7 +21,7 @@
 	function handleFiles(files: File[]) {
 		const imageFiles = files.filter((file) => file.type.startsWith('image/'));
 		if (imageFiles.length > 0) {
-			dispatch('upload', imageFiles);
+			onUpload?.(imageFiles);
 		}
 	}
 
