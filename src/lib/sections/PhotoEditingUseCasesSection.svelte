@@ -13,14 +13,13 @@
 			</p>
 		</div>
 		<div class="rounded-lg bg-white p-6 shadow-sm">
-			<h3 class="mb-3 text-lg font-semibold text-gray-900">💼 Professional Touch-ups</h3>
+			<h3 class="mb-3 text-lg font-semibold text-gray-900">💼 Basic Photo Touch-ups</h3>
 			<p class="mb-2 text-sm text-gray-600">
-				Enhance photos for resumes, LinkedIn profiles, or business presentations. Fine-tune
-				lighting, correct orientation, and apply subtle adjustments to create polished, professional
-				images.
+				Improve photos for resumes, LinkedIn profiles, or presentations. Adjust
+				brightness, contrast, or rotation to make your photos look better.
 			</p>
 			<p class="text-xs text-gray-500">
-				Best tools: Brightness/contrast fine-tuning, rotation, light color correction
+				Best tools: Brightness/contrast adjustments, rotation
 			</p>
 		</div>
 		<div class="rounded-lg bg-white p-6 shadow-sm">

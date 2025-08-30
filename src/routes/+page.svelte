@@ -114,10 +114,10 @@
 			<div class="py-12">
 				<div class="mb-12 text-center">
 					<h1 class="mb-4 text-2xl font-bold text-gray-900 sm:text-4xl md:text-5xl">
-						Professional Photo Editor
+						Simple Photo Editor
 					</h1>
 					<p class="mx-auto max-w-2xl text-base text-gray-600 sm:text-lg">
-						Edit photos online with professional tools.<br />
+						Edit photos online with basic editing tools.<br />
 						Fast, free, and secure - all processing happens in your browser.
 					</p>
 				</div>
