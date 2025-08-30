@@ -107,6 +107,13 @@
 
 	function handleTabClick(tabId: string) {
 		activeTab = tabId;
+		// Auto-activate draw mode when Draw tab is selected
+		if (tabId === 'draw' && !drawingMode) {
+			onDrawingModeToggle();
+		} else if (tabId !== 'draw' && drawingMode) {
+			// Auto-deactivate draw mode when other tabs are selected
+			onDrawingModeToggle();
+		}
 	}
 
 	const tabs = [
@@ -181,7 +188,7 @@
 		{:else if activeTab === 'filters'}
 			<FiltersTab {activeFilter} {onFilterChange} />
 		{:else if activeTab === 'draw'}
-			<DrawTab {drawingMode} bind:brushSize bind:brushColor {onDrawingModeToggle} />
+			<DrawTab bind:brushSize bind:brushColor />
 		{/if}
 	</div>
 </div>
