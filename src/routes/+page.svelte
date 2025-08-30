@@ -82,7 +82,7 @@
 		store.newImage();
 	}
 
-	function handleFilterChange(filter: 'none' | 'grayscale' | 'sepia' | 'invert') {
+	function handleFilterChange(filter: 'none' | 'grayscale' | 'sepia' | 'invert' | 'vintage' | 'cool' | 'warm' | 'dramatic' | 'soft' | 'vivid' | 'noir' | 'sunset' | 'arctic' | 'emerald' | 'rose' | 'cyberpunk') {
 		store.setActiveFilter(filter);
 		updateImageImmediate();
 	}

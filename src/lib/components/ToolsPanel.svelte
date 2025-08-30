@@ -16,7 +16,23 @@
 		blacks: number;
 		clarity: number;
 		dehaze: number;
-		activeFilter: 'none' | 'grayscale' | 'sepia' | 'invert';
+		activeFilter:
+			| 'none'
+			| 'grayscale'
+			| 'sepia'
+			| 'invert'
+			| 'vintage'
+			| 'cool'
+			| 'warm'
+			| 'dramatic'
+			| 'soft'
+			| 'vivid'
+			| 'noir'
+			| 'sunset'
+			| 'arctic'
+			| 'emerald'
+			| 'rose'
+			| 'cyberpunk';
 		drawingMode: boolean;
 		brushSize: number;
 		brushColor: string;
@@ -32,7 +48,25 @@
 		onBlacksChange: () => void;
 		onClarityChange: () => void;
 		onDehazeChange: () => void;
-		onFilterChange: (filter: 'none' | 'grayscale' | 'sepia' | 'invert') => void;
+		onFilterChange: (
+			filter:
+				| 'none'
+				| 'grayscale'
+				| 'sepia'
+				| 'invert'
+				| 'vintage'
+				| 'cool'
+				| 'warm'
+				| 'dramatic'
+				| 'soft'
+				| 'vivid'
+				| 'noir'
+				| 'sunset'
+				| 'arctic'
+				| 'emerald'
+				| 'rose'
+				| 'cyberpunk'
+		) => void;
 		onDrawingModeToggle: () => void;
 	};
 

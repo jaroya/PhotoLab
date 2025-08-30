@@ -26,7 +26,24 @@ export function createPhotoEditorStore() {
 	let brushColor = $state('#ff0000');
 
 	// Filter state
-	let activeFilter = $state<'none' | 'grayscale' | 'sepia' | 'invert'>('none');
+	let activeFilter = $state<
+		| 'none'
+		| 'grayscale'
+		| 'sepia'
+		| 'invert'
+		| 'vintage'
+		| 'cool'
+		| 'warm'
+		| 'dramatic'
+		| 'soft'
+		| 'vivid'
+		| 'noir'
+		| 'sunset'
+		| 'arctic'
+		| 'emerald'
+		| 'rose'
+		| 'cyberpunk'
+	>('none');
 
 	// Debouncing
 	let updateTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -160,7 +177,25 @@ export function createPhotoEditorStore() {
 		setDrawingMode: (value: boolean) => {
 			drawingMode = value;
 		},
-		setActiveFilter: (filter: 'none' | 'grayscale' | 'sepia' | 'invert') => {
+		setActiveFilter: (
+			filter:
+				| 'none'
+				| 'grayscale'
+				| 'sepia'
+				| 'invert'
+				| 'vintage'
+				| 'cool'
+				| 'warm'
+				| 'dramatic'
+				| 'soft'
+				| 'vivid'
+				| 'noir'
+				| 'sunset'
+				| 'arctic'
+				| 'emerald'
+				| 'rose'
+				| 'cyberpunk'
+		) => {
 			activeFilter = filter;
 		},
 

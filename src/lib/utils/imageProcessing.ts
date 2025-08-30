@@ -176,31 +176,149 @@ function applyAllAdjustments(
 
 export function applyPresetFilter(
 	data: Uint8ClampedArray,
-	filter: 'grayscale' | 'sepia' | 'invert'
+	filter:
+		| 'grayscale'
+		| 'sepia'
+		| 'invert'
+		| 'vintage'
+		| 'cool'
+		| 'warm'
+		| 'dramatic'
+		| 'soft'
+		| 'vivid'
+		| 'noir'
+		| 'sunset'
+		| 'arctic'
+		| 'emerald'
+		| 'rose'
+		| 'cyberpunk'
 ) {
 	for (let i = 0; i < data.length; i += 4) {
+		let r = data[i];
+		let g = data[i + 1];
+		let b = data[i + 2];
+
 		switch (filter) {
 			case 'grayscale': {
-				const gray = 0.299 * data[i] + 0.587 * data[i + 1] + 0.114 * data[i + 2];
+				const gray = 0.299 * r + 0.587 * g + 0.114 * b;
 				data[i] = gray;
 				data[i + 1] = gray;
 				data[i + 2] = gray;
 				break;
 			}
 			case 'sepia': {
-				const r = data[i];
-				const g = data[i + 1];
-				const b = data[i + 2];
 				data[i] = Math.min(255, r * 0.393 + g * 0.769 + b * 0.189);
 				data[i + 1] = Math.min(255, r * 0.349 + g * 0.686 + b * 0.168);
 				data[i + 2] = Math.min(255, r * 0.272 + g * 0.534 + b * 0.131);
 				break;
 			}
 			case 'invert':
-				data[i] = 255 - data[i];
-				data[i + 1] = 255 - data[i + 1];
-				data[i + 2] = 255 - data[i + 2];
+				data[i] = 255 - r;
+				data[i + 1] = 255 - g;
+				data[i + 2] = 255 - b;
 				break;
+			case 'vintage': {
+				// Warm sepia with reduced contrast
+				const sepia_r = Math.min(255, r * 0.393 + g * 0.769 + b * 0.189);
+				const sepia_g = Math.min(255, r * 0.349 + g * 0.686 + b * 0.168);
+				const sepia_b = Math.min(255, r * 0.272 + g * 0.534 + b * 0.131);
+				data[i] = Math.min(255, sepia_r * 1.1);
+				data[i + 1] = Math.min(255, sepia_g * 0.9);
+				data[i + 2] = Math.min(255, sepia_b * 0.7);
+				break;
+			}
+			case 'cool': {
+				data[i] = Math.min(255, r * 0.8);
+				data[i + 1] = Math.min(255, g * 1.1);
+				data[i + 2] = Math.min(255, b * 1.3);
+				break;
+			}
+			case 'warm': {
+				data[i] = Math.min(255, r * 1.3);
+				data[i + 1] = Math.min(255, g * 1.1);
+				data[i + 2] = Math.min(255, b * 0.8);
+				break;
+			}
+			case 'dramatic': {
+				// High contrast with slight desaturation
+				const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+				const contrast = 1.5;
+				const saturation = 0.8;
+				r = gray + (r - gray) * saturation;
+				g = gray + (g - gray) * saturation;
+				b = gray + (b - gray) * saturation;
+				r = Math.min(255, Math.max(0, (r - 128) * contrast + 128));
+				g = Math.min(255, Math.max(0, (g - 128) * contrast + 128));
+				b = Math.min(255, Math.max(0, (b - 128) * contrast + 128));
+				data[i] = r;
+				data[i + 1] = g;
+				data[i + 2] = b;
+				break;
+			}
+			case 'soft': {
+				// Pastel effect with brightness boost
+				data[i] = Math.min(255, r * 0.9 + 30);
+				data[i + 1] = Math.min(255, g * 0.9 + 25);
+				data[i + 2] = Math.min(255, b * 0.95 + 35);
+				break;
+			}
+			case 'vivid': {
+				// Enhanced saturation
+				const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+				const saturation = 1.4;
+				data[i] = Math.min(255, gray + (r - gray) * saturation);
+				data[i + 1] = Math.min(255, gray + (g - gray) * saturation);
+				data[i + 2] = Math.min(255, gray + (b - gray) * saturation);
+				break;
+			}
+			case 'noir': {
+				// High contrast black and white
+				const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+				const contrast = 1.8;
+				const enhanced = Math.min(255, Math.max(0, (gray - 128) * contrast + 128));
+				data[i] = enhanced;
+				data[i + 1] = enhanced;
+				data[i + 2] = enhanced;
+				break;
+			}
+			case 'sunset': {
+				data[i] = Math.min(255, r * 1.4);
+				data[i + 1] = Math.min(255, g * 1.2);
+				data[i + 2] = Math.min(255, b * 0.6);
+				break;
+			}
+			case 'arctic': {
+				data[i] = Math.min(255, r * 0.9 + 20);
+				data[i + 1] = Math.min(255, g + 15);
+				data[i + 2] = Math.min(255, b * 1.2 + 10);
+				break;
+			}
+			case 'emerald': {
+				data[i] = Math.min(255, r * 0.7);
+				data[i + 1] = Math.min(255, g * 1.3);
+				data[i + 2] = Math.min(255, b * 0.9);
+				break;
+			}
+			case 'rose': {
+				data[i] = Math.min(255, r * 1.2);
+				data[i + 1] = Math.min(255, g * 0.9);
+				data[i + 2] = Math.min(255, b * 1.1);
+				break;
+			}
+			case 'cyberpunk': {
+				// Purple/cyan tint with high contrast
+				const gray = 0.299 * r + 0.587 * g + 0.114 * b;
+				if (gray < 128) {
+					data[i] = Math.min(255, r * 1.3);
+					data[i + 1] = Math.min(255, g * 0.8);
+					data[i + 2] = Math.min(255, b * 1.5);
+				} else {
+					data[i] = Math.min(255, r * 0.8);
+					data[i + 1] = Math.min(255, g * 1.2);
+					data[i + 2] = Math.min(255, b * 1.4);
+				}
+				break;
+			}
 		}
 	}
 }

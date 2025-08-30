@@ -1,31 +1,138 @@
 <script lang="ts">
+	type FilterType =
+		| 'none'
+		| 'grayscale'
+		| 'sepia'
+		| 'invert'
+		| 'vintage'
+		| 'cool'
+		| 'warm'
+		| 'dramatic'
+		| 'soft'
+		| 'vivid'
+		| 'noir'
+		| 'sunset'
+		| 'arctic'
+		| 'emerald'
+		| 'rose'
+		| 'cyberpunk';
+
 	type Props = {
-		activeFilter: 'none' | 'grayscale' | 'sepia' | 'invert';
-		onFilterChange: (filter: 'none' | 'grayscale' | 'sepia' | 'invert') => void;
+		activeFilter: FilterType;
+		onFilterChange: (filter: FilterType) => void;
 	};
 
 	let { activeFilter, onFilterChange }: Props = $props();
 
 	const filters: Array<{
-		id: 'none' | 'grayscale' | 'sepia' | 'invert';
+		id: FilterType;
 		label: string;
 		preview: string;
+		description: string;
 	}> = [
-		{ id: 'none', label: 'Original', preview: 'bg-gradient-to-br from-red-400 to-blue-500' },
+		{
+			id: 'none',
+			label: 'Original',
+			preview: 'bg-gradient-to-br from-red-400 to-blue-500',
+			description: 'No filter applied'
+		},
 		{
 			id: 'grayscale',
 			label: 'Grayscale',
-			preview: 'bg-gradient-to-br from-gray-400 to-gray-600'
+			preview: 'bg-gradient-to-br from-gray-400 to-gray-600',
+			description: 'Classic black and white'
 		},
-		{ id: 'sepia', label: 'Sepia', preview: 'bg-gradient-to-br from-yellow-600 to-amber-800' },
-		{ id: 'invert', label: 'Invert', preview: 'bg-gradient-to-br from-purple-400 to-cyan-400' }
+		{
+			id: 'sepia',
+			label: 'Sepia',
+			preview: 'bg-gradient-to-br from-yellow-600 to-amber-800',
+			description: 'Vintage brown tone'
+		},
+		{
+			id: 'invert',
+			label: 'Invert',
+			preview: 'bg-gradient-to-br from-purple-400 to-cyan-400',
+			description: 'Negative effect'
+		},
+		{
+			id: 'vintage',
+			label: 'Vintage',
+			preview: 'bg-gradient-to-br from-amber-600 to-orange-800',
+			description: 'Retro film look'
+		},
+		{
+			id: 'cool',
+			label: 'Cool',
+			preview: 'bg-gradient-to-br from-blue-400 to-cyan-600',
+			description: 'Blue tint for calmness'
+		},
+		{
+			id: 'warm',
+			label: 'Warm',
+			preview: 'bg-gradient-to-br from-orange-400 to-red-500',
+			description: 'Orange tint for warmth'
+		},
+		{
+			id: 'dramatic',
+			label: 'Dramatic',
+			preview: 'bg-gradient-to-br from-gray-900 to-gray-700',
+			description: 'High contrast mood'
+		},
+		{
+			id: 'soft',
+			label: 'Soft',
+			preview: 'bg-gradient-to-br from-pink-200 to-purple-300',
+			description: 'Gentle pastel look'
+		},
+		{
+			id: 'vivid',
+			label: 'Vivid',
+			preview: 'bg-gradient-to-br from-green-400 to-blue-500',
+			description: 'Enhanced colors'
+		},
+		{
+			id: 'noir',
+			label: 'Noir',
+			preview: 'bg-gradient-to-br from-gray-800 to-black',
+			description: 'Film noir style'
+		},
+		{
+			id: 'sunset',
+			label: 'Sunset',
+			preview: 'bg-gradient-to-br from-yellow-400 to-red-600',
+			description: 'Golden hour warmth'
+		},
+		{
+			id: 'arctic',
+			label: 'Arctic',
+			preview: 'bg-gradient-to-br from-blue-100 to-blue-300',
+			description: 'Cool winter tones'
+		},
+		{
+			id: 'emerald',
+			label: 'Emerald',
+			preview: 'bg-gradient-to-br from-green-400 to-emerald-600',
+			description: 'Rich green tint'
+		},
+		{
+			id: 'rose',
+			label: 'Rose',
+			preview: 'bg-gradient-to-br from-pink-400 to-rose-600',
+			description: 'Romantic pink tone'
+		},
+		{
+			id: 'cyberpunk',
+			label: 'Cyberpunk',
+			preview: 'bg-gradient-to-br from-purple-500 to-cyan-400',
+			description: 'Neon futuristic look'
+		}
 	];
 </script>
 
 <div class="space-y-4">
 	<h3 class="text-lg font-medium text-gray-900">Image Filters</h3>
 
-	<div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+	<div class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
 		{#each filters as filter (filter.id)}
 			<div
 				class="group flex cursor-pointer flex-col items-center space-y-2 rounded-lg border-2 p-4 transition-all hover:shadow-md {activeFilter ===
@@ -65,13 +172,7 @@
 	{#if activeFilter !== 'none'}
 		<div class="rounded-lg bg-blue-50 p-3">
 			<p class="text-sm text-blue-700">
-				{#if activeFilter === 'grayscale'}
-					Removes color information, creating a black and white image.
-				{:else if activeFilter === 'sepia'}
-					Applies a warm, vintage brown tone effect.
-				{:else if activeFilter === 'invert'}
-					Inverts all colors, creating a negative effect.
-				{/if}
+				{filters.find((f) => f.id === activeFilter)?.description}
 			</p>
 		</div>
 	{/if}
