@@ -100,7 +100,7 @@ test.describe('Photo Editor Complete Workflow', () => {
 		await expect(downloadButton).toBeVisible();
 	});
 
-	test('filter gallery workflow', async ({ page, browserName }) => {
+	test('filter gallery workflow', async ({ page }) => {
 		// Create and upload test image
 		const testImageBuffer = await page.evaluate(() => {
 			const canvas = document.createElement('canvas');
@@ -136,7 +136,7 @@ test.describe('Photo Editor Complete Workflow', () => {
 		}
 	});
 
-	test('drawing tools workflow', async ({ page, browserName }) => {
+	test('drawing tools workflow', async ({ page }) => {
 		// Create and upload test image
 		const testImageBuffer = await page.evaluate(() => {
 			const canvas = document.createElement('canvas');
@@ -193,7 +193,7 @@ test.describe('Photo Editor Complete Workflow', () => {
 		}
 	});
 
-	test('tab switching preserves drawing mode', async ({ page, browserName }) => {
+	test('tab switching preserves drawing mode', async ({ page }) => {
 		// Create and upload test image
 		const testImageBuffer = await page.evaluate(() => {
 			const canvas = document.createElement('canvas');
@@ -233,7 +233,7 @@ test.describe('Photo Editor Complete Workflow', () => {
 		await expect(page.locator('nav button:has-text("Draw")')).toHaveClass(/text-blue-600/);
 	});
 
-	test('reset functionality preserves current tab state', async ({ page, browserName }) => {
+	test('reset functionality preserves current tab state', async ({ page }) => {
 		// Create and upload test image
 		const testImageBuffer = await page.evaluate(() => {
 			const canvas = document.createElement('canvas');
@@ -281,7 +281,7 @@ test.describe('Photo Editor Complete Workflow', () => {
 		await canvas.click({ position: { x: 120, y: 120 } });
 	});
 
-	test('responsive design and mobile interaction', async ({ page, browserName }) => {
+	test('responsive design and mobile interaction', async ({ page }) => {
 		// Test mobile viewport
 		await page.setViewportSize({ width: 375, height: 667 });
 
