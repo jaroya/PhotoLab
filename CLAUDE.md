@@ -99,7 +99,10 @@ npm run format && npm run lint && npm run check && npm test
 
 **README.md sections to verify:**
 
-- all sections
+- **All sections that could be affected by your changes**
+- **When unsure, read the full README.md and compare against your modifications**
+- **Common areas**: features, installation, commands, tech stack, testing, browser support
+- **If you find outdated content in any section, update it**
 
 ### 4. Completion Phase
 
