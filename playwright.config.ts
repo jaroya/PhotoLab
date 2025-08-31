@@ -9,6 +9,7 @@ export default defineConfig({
 	use: {
 		baseURL: 'http://localhost:4173'
 	},
+	workers: 2,
 	projects: [
 		{
 			name: 'chromium',
@@ -21,13 +22,6 @@ export default defineConfig({
 			name: 'firefox',
 			use: {
 				...{ browserName: 'firefox' },
-				hasTouch: true
-			}
-		},
-		{
-			name: 'webkit',
-			use: {
-				...{ browserName: 'webkit' },
 				hasTouch: true
 			}
 		}

@@ -120,25 +120,9 @@ test.describe('Photo Editor Complete Workflow', () => {
 			buffer: buffer
 		});
 
-		// WebKit-specific handling - wait longer and check for alternative indicators
-		if (browserName === 'webkit') {
-			// For WebKit, wait for any sign the image was processed
-			await page.waitForTimeout(2000);
-
-			// Check if we can find the editor interface or fall back to canvas
-			const hasEditor = await page.locator('h2:has-text("Edit Your Photo")').isVisible();
-			const hasCanvas = await page.locator('canvas').isVisible();
-
-			if (!hasEditor && !hasCanvas) {
-				// Skip this test for WebKit if file upload isn't working
-				test.skip(browserName === 'webkit', 'WebKit file upload timing issues in test environment');
-				return;
-			}
-		} else {
-			// Wait for the editor interface to appear (indicates image was loaded)
-			await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
-			await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
-		}
+		// Wait for the editor interface to appear (indicates image was loaded)
+		await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
+		await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
 
 		// Go to filters tab
 		await page.click('nav button:has-text("Filters")');
@@ -172,25 +156,9 @@ test.describe('Photo Editor Complete Workflow', () => {
 			buffer: buffer
 		});
 
-		// WebKit-specific handling - wait longer and check for alternative indicators
-		if (browserName === 'webkit') {
-			// For WebKit, wait for any sign the image was processed
-			await page.waitForTimeout(2000);
-
-			// Check if we can find the editor interface or fall back to canvas
-			const hasEditor = await page.locator('h2:has-text("Edit Your Photo")').isVisible();
-			const hasCanvas = await page.locator('canvas').isVisible();
-
-			if (!hasEditor && !hasCanvas) {
-				// Skip this test for WebKit if file upload isn't working
-				test.skip(browserName === 'webkit', 'WebKit file upload timing issues in test environment');
-				return;
-			}
-		} else {
-			// Wait for the editor interface to appear (indicates image was loaded)
-			await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
-			await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
-		}
+		// Wait for the editor interface to appear (indicates image was loaded)
+		await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
+		await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
 
 		// Go to draw tab
 		await page.click('nav button:has-text("Draw")');
@@ -245,25 +213,9 @@ test.describe('Photo Editor Complete Workflow', () => {
 			buffer: buffer
 		});
 
-		// WebKit-specific handling - wait longer and check for alternative indicators
-		if (browserName === 'webkit') {
-			// For WebKit, wait for any sign the image was processed
-			await page.waitForTimeout(2000);
-
-			// Check if we can find the editor interface or fall back to canvas
-			const hasEditor = await page.locator('h2:has-text("Edit Your Photo")').isVisible();
-			const hasCanvas = await page.locator('canvas').isVisible();
-
-			if (!hasEditor && !hasCanvas) {
-				// Skip this test for WebKit if file upload isn't working
-				test.skip(browserName === 'webkit', 'WebKit file upload timing issues in test environment');
-				return;
-			}
-		} else {
-			// Wait for the editor interface to appear (indicates image was loaded)
-			await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
-			await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
-		}
+		// Wait for the editor interface to appear (indicates image was loaded)
+		await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
+		await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
 
 		// Start on adjust tab (default)
 		await expect(page.locator('nav button:has-text("Adjust")')).toHaveClass(/text-blue-600/);
@@ -301,25 +253,9 @@ test.describe('Photo Editor Complete Workflow', () => {
 			buffer: buffer
 		});
 
-		// WebKit-specific handling - wait longer and check for alternative indicators
-		if (browserName === 'webkit') {
-			// For WebKit, wait for any sign the image was processed
-			await page.waitForTimeout(2000);
-
-			// Check if we can find the editor interface or fall back to canvas
-			const hasEditor = await page.locator('h2:has-text("Edit Your Photo")').isVisible();
-			const hasCanvas = await page.locator('canvas').isVisible();
-
-			if (!hasEditor && !hasCanvas) {
-				// Skip this test for WebKit if file upload isn't working
-				test.skip(browserName === 'webkit', 'WebKit file upload timing issues in test environment');
-				return;
-			}
-		} else {
-			// Wait for the editor interface to appear (indicates image was loaded)
-			await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
-			await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
-		}
+		// Wait for the editor interface to appear (indicates image was loaded)
+		await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
+		await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
 
 		// Make some adjustments
 		const brightnessSlider = page.locator('input[type="range"]').nth(0);
@@ -368,25 +304,9 @@ test.describe('Photo Editor Complete Workflow', () => {
 			buffer: buffer
 		});
 
-		// WebKit-specific handling - wait longer and check for alternative indicators
-		if (browserName === 'webkit') {
-			// For WebKit, wait for any sign the image was processed
-			await page.waitForTimeout(2000);
-
-			// Check if we can find the editor interface or fall back to canvas
-			const hasEditor = await page.locator('h2:has-text("Edit Your Photo")').isVisible();
-			const hasCanvas = await page.locator('canvas').isVisible();
-
-			if (!hasEditor && !hasCanvas) {
-				// Skip this test for WebKit if file upload isn't working
-				test.skip(browserName === 'webkit', 'WebKit file upload timing issues in test environment');
-				return;
-			}
-		} else {
-			// Wait for the editor interface to appear (indicates image was loaded)
-			await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
-			await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
-		}
+		// Wait for the editor interface to appear (indicates image was loaded)
+		await expect(page.locator('h2:has-text("Edit Your Photo")')).toBeVisible({ timeout: 10000 });
+		await expect(page.locator('canvas')).toBeVisible({ timeout: 10000 });
 
 		// Test tab switching on mobile
 		await expect(page.locator('nav button:has-text("Adjust")')).toHaveClass(/text-blue-600/);
