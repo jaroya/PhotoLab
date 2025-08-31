@@ -52,6 +52,10 @@ PhotoLab makes basic photo editing accessible and privacy-focused. The project f
 - **[Playwright](https://playwright.dev/)** - End-to-end testing
 - **Cross-Browser Testing** - Chrome and Firefox automated testing in CI
 
+### Analytics
+
+- **[Firebase Analytics](https://firebase.google.com/docs/analytics)** - User behavior tracking and performance insights
+
 ### Development Tools
 
 - **[ESLint](https://eslint.org/)** - Code linting
