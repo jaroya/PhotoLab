@@ -16,9 +16,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Development Notes
 
-Whenever you finish a task, please run all code quality checks: format, lint, check, test.
-If any of those contains warnings, errors or failures - even if from unchanged files - please fix them.
-If unclear what to fix (code or test), please ask me. Don't guess. Think hard.
+### Quality Gate Requirements
+
+**CRITICAL: When finishing any task, you MUST run the complete quality sequence:**
+
+```bash
+npm run format && npm run lint && npm run check && npm test
+```
+
+**Rules:**
+
+1. **Run ALL FOUR commands in sequence** - no shortcuts
+2. **If ANY command fails/warns/errors** → fix the issue and **START OVER** from `npm run format`
+3. **Only stop when all 4 commands pass cleanly in a single run**
+4. **No exceptions** - even warnings from unchanged files must be fixed
+5. **If unclear what to fix** → ask me, don't guess
+
+**Example workflow:**
+
+- Run sequence → lint fails → fix lint → **restart from format**
+- Run sequence → test fails → fix test → **restart from format**
+- Run sequence → all pass ✅ → **done!**
+
+This ensures the codebase is always in a perfect state before any commit.
 
 ### Test Requirements
 
