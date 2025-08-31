@@ -2,16 +2,18 @@
 
 A simple, free, and secure browser-based photo editor with essential editing tools, filters, and drawing capabilities.
 
-**🌐 Live Demo: [Your PhotoLab URL]**
+**🌐 Live Demo: https://image-editor.online/**
 
 ## ✨ Features
 
-- **Basic Editing Tools**: Brightness, contrast, and rotation adjustments with real-time preview
-- **Creative Filters**: Grayscale, sepia, and invert filters for artistic expression
-- **Drawing & Annotations**: Customizable brush sizes and colors for markup and creative touches
+- **12 Professional Adjustment Tools**: Exposure, brightness, contrast, highlights, shadows, whites, blacks, saturation, vibrance, clarity, dehaze, and rotation with real-time preview
+- **16 Creative Filters**: Complete collection including grayscale, sepia, invert, vintage, cool, warm, dramatic, soft, vivid, noir, sunset, arctic, emerald, rose, and cyberpunk effects
+- **Tabbed Interface**: Professional photo editor workflow with organized Adjust, Filters, and Draw tabs
+- **Enhanced Drawing System**: Professional-quality smooth drawing with undo functionality, customizable brush sizes and colors
+- **Auto-Mode Switching**: Draw mode automatically activates when Draw tab is selected for seamless workflow
 - **Multiple Format Support**: Edit JPG, PNG, WebP, and GIF images
 - **Client-Side Processing**: All editing happens in your browser - your photos never leave your device
-- **Instant Preview**: See edits in real-time as you work
+- **Instant Preview**: See edits in real-time as you work with debounced updates for smooth performance
 - **One-Click Download**: Save your enhanced photos instantly
 - **Responsive Design**: Works perfectly on desktop, tablet, and mobile devices
 - **No Sign-up Required**: Start editing immediately without creating an account
@@ -30,17 +32,19 @@ PhotoLab makes basic photo editing accessible and privacy-focused. The project f
 
 ### Frontend
 
-- **[SvelteKit](https://kit.svelte.dev/)** - Full-stack framework
-- **[Svelte](https://svelte.dev/)** - Reactive UI framework with latest runes API
-- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe development
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first styling
-- **[Vite](https://vitejs.dev/)** - Fast build tool
+- **[SvelteKit](https://kit.svelte.dev/)** - Full-stack framework for modern web applications
+- **[Svelte 5](https://svelte.dev/)** - Reactive UI framework using cutting-edge runes API ($state, $bindable, $derived)
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe development with strict typing
+- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first styling for responsive design
+- **[Vite](https://vitejs.dev/)** - Lightning-fast build tool and development server
 
 ### Image Processing
 
-- **HTML5 Canvas API** - High-performance image manipulation
-- **File API** - Secure client-side file handling
-- **Custom Filters** - Optimized image processing algorithms
+- **HTML5 Canvas API** - High-performance pixel-level image manipulation
+- **File API** - Secure client-side file handling with drag & drop support
+- **Advanced Algorithms** - Professional-grade exposure, highlight/shadow, and color grading processing
+- **Smooth Drawing Engine** - Quadratic curve rendering with jitter reduction and proper line caps/joins
+- **Real-time Processing** - Optimized canvas operations with debounced updates for smooth performance
 
 ### Testing
 
@@ -102,9 +106,22 @@ npm run test:unit -- --watch
 
 ### Test Coverage
 
-- **Unit Tests**: Core editing logic and utilities
-- **Browser Tests**: Canvas API operations and image processing
-- **E2E Tests**: User workflows, file upload, editing, and download
+**67 Comprehensive Unit Tests** covering:
+
+- **Image Processing**: All 16 filters with pixel-level validation and image loading functionality
+- **Canvas Operations**: Canvas setup, image drawing, rotation handling, coordinate calculations, and download functionality
+- **Drawing System**: Complete drawing lifecycle, smooth line rendering, undo state management, and jitter reduction
+- **Photo Editor Store**: State initialization, all 12 adjustment properties, reactive updates, debounced operations, and history management
+
+**End-to-End Tests** covering:
+
+- **Complete Workflows**: Full photo editing sessions from upload to download
+- **Filter Gallery**: Testing all 16 filters with visual validation
+- **Drawing Tools**: Brush sizes, colors, undo functionality across user interactions
+- **UI Behavior**: Tab switching, drawing mode activation, reset functionality
+- **Responsive Design**: Mobile and tablet interaction patterns
+
+**Automated CI/CD**: All tests run on GitHub Actions for every commit, ensuring code quality and functionality
 
 ## 🏗️ Development
 
@@ -125,11 +142,16 @@ npm run check        # TypeScript validation with svelte-check
 src/
 ├── lib/
 │   ├── components/          # Svelte components
-│   │   ├── FileUpload.svelte
-│   │   ├── PhotoCanvas.svelte
-│   │   ├── ControlsPanel.svelte
-│   │   ├── Header.svelte
-│   │   └── Footer.svelte
+│   │   ├── FileUpload.svelte       # Drag & drop file upload
+│   │   ├── PhotoCanvas.svelte      # Main canvas for image display
+│   │   ├── ToolsPanel.svelte       # Main tabbed container
+│   │   ├── AdjustTab.svelte        # 12 professional adjustment tools
+│   │   ├── FiltersTab.svelte       # 16 creative filters
+│   │   ├── DrawTab.svelte          # Drawing tools with undo
+│   │   ├── TabPanel.svelte         # Generic tabbed interface
+│   │   ├── Button.svelte           # Reusable button component
+│   │   ├── Header.svelte           # Site header
+│   │   └── Footer.svelte           # Site footer
 │   ├── sections/           # Landing page sections
 │   │   ├── FeaturesSection.svelte
 │   │   ├── HowItWorksSection.svelte
@@ -137,14 +159,14 @@ src/
 │   │   ├── SupportedFormatsSection.svelte
 │   │   ├── PhotoEditingTipsSection.svelte
 │   │   └── FAQSection.svelte
-│   ├── stores/            # Svelte stores
-│   │   └── photoEditor.svelte.ts
+│   ├── stores/            # Svelte 5 stores with runes
+│   │   └── photoEditor.svelte.ts   # Main editor state management
 │   └── utils/            # Utility functions
-│       ├── canvasUtils.ts
-│       ├── imageProcessing.ts
-│       └── drawingUtils.ts
+│       ├── canvasUtils.ts          # Canvas operations and setup
+│       ├── imageProcessing.ts      # Advanced filter algorithms
+│       └── drawingUtils.ts         # Smooth drawing implementation
 ├── routes/               # SvelteKit routes
-│   └── +page.svelte     # Homepage
+│   └── +page.svelte     # Main application page
 tests/
 ├── unit/               # Unit tests
 ├── e2e/               # End-to-end tests
@@ -153,29 +175,93 @@ tests/
 
 ### Key Components
 
-- **PhotoCanvas**: Main canvas component for image display and drawing
-- **ControlsPanel**: Editing controls (brightness, contrast, filters, etc.)
-- **FileUpload**: Drag & drop file upload interface
-- **Photo Editor Store**: State management for editing operations
+- **ToolsPanel**: Main tabbed container organizing all editing tools
+- **AdjustTab**: 12 professional adjustment sliders (exposure, highlights, shadows, etc.)
+- **FiltersTab**: 16 creative filters with visual previews and descriptions
+- **DrawTab**: Professional drawing tools with undo functionality and auto-activation
+- **PhotoCanvas**: High-performance canvas component for image display and drawing
+- **FileUpload**: Drag & drop file upload interface with format validation
+- **Photo Editor Store**: Svelte 5 runes-based state management with reactive updates
 
 ## 🎨 Photo Editing Features
 
-### Basic Adjustments
+### Professional Adjustment Tools (12 Total)
 
-- **Brightness**: Fine-tune image lighting (-100 to +100)
-- **Contrast**: Enhance or reduce contrast (-100 to +100)
+- **Exposure**: Professional exposure compensation (-100 to +100)
+- **Brightness**: Fine-tune overall image lighting (-100 to +100)
+- **Contrast**: Enhance or reduce image contrast (-100 to +100)
+- **Highlights**: Recover or enhance bright areas (-100 to +100)
+- **Shadows**: Lift or deepen shadow details (-100 to +100)
+- **Whites**: Control pure white levels (-100 to +100)
+- **Blacks**: Adjust black point and dark tones (-100 to +100)
+- **Saturation**: Global color intensity adjustment (-100 to +100)
+- **Vibrance**: Intelligent saturation for skin tones (-100 to +100)
+- **Clarity**: Mid-tone contrast for image definition (-100 to +100)
+- **Dehaze**: Remove atmospheric haze and enhance clarity (-100 to +100)
 - **Rotation**: Rotate images in 90-degree increments
 
-### Creative Filters
+### Creative Filters (16 Total)
 
-- **Grayscale**: Convert to black and white
-- **Sepia**: Apply vintage warm tone effect
-- **Invert**: Create negative/inverted color effect
+**Basic Filters:**
 
-### Drawing Tools
+- **None**: Original image without any filter applied
+- **Grayscale**: Professional black and white conversion
+- **Sepia**: Classic vintage warm brown tone effect
+- **Invert**: High-quality negative/inverted color effect
 
-- **Freehand Drawing**: Basic brush with adjustable size and color
-- **Simple Annotations**: Add drawings and markup to images
+**Artistic Filters:**
+
+- **Vintage**: Retro film look with reduced contrast and warm sepia tones
+- **Cool**: Blue-tinted effect for calm, serene moods
+- **Warm**: Orange-tinted effect for cozy, inviting atmosphere
+- **Dramatic**: High contrast with selective desaturation for mood
+- **Soft**: Gentle pastel effect with brightness boost
+- **Vivid**: Enhanced saturation for vibrant, eye-catching results
+- **Noir**: High-contrast black and white for film noir aesthetics
+
+**Color-Themed Filters:**
+
+- **Sunset**: Golden hour warmth with enhanced reds and yellows
+- **Arctic**: Cool winter tones with blue-white enhancement
+- **Emerald**: Rich green tint for nature photography
+- **Rose**: Romantic pink tone for portraits and soft imagery
+- **Cyberpunk**: Futuristic purple/cyan tint with high contrast
+
+### Enhanced Drawing System
+
+- **Professional Quality**: Smooth quadratic curve rendering eliminates jagged lines
+- **Smart Line Rendering**: Proper line caps and joins prevent pointy/clipped edges
+- **Jitter Reduction**: Advanced algorithms filter out micro-movements for clean strokes
+- **Undo Functionality**: Drawing-specific undo system (up to 20 operations)
+- **Auto-Activation**: Drawing mode automatically enables when Draw tab is selected
+- **Customizable Brushes**: Adjustable size (1-50px) and full color picker
+- **16 Preset Colors**: Quick access to commonly used drawing colors
+
+## 🎛️ Professional UI/UX Design
+
+### Tabbed Interface Architecture
+
+PhotoLab features a professional photo editor workflow with an intuitive tabbed interface:
+
+- **Adjust Tab**: All 12 professional adjustment tools organized in a clean, accessible layout
+- **Filters Tab**: Visual filter gallery with preview thumbnails and descriptions
+- **Draw Tab**: Complete drawing toolkit with automatic mode switching
+
+### Smart Workflow Features
+
+- **Auto-Mode Switching**: Drawing mode automatically activates when Draw tab is selected
+- **Context-Aware Interface**: Each tab shows relevant tools and controls
+- **Bottom Panel Design**: Professional layout with tools below the image for optimal workflow
+- **Responsive Design**: Tabs reorganize on mobile devices for touch-friendly editing
+- **Real-Time Preview**: All adjustments update instantly with smooth, debounced rendering
+- **Memory Efficient**: Optimized canvas operations prevent memory leaks during extended editing
+
+### User Experience Enhancements
+
+- **Visual Feedback**: Clear active/inactive states for all controls
+- **Keyboard Friendly**: Accessible design with proper focus management
+- **Touch Optimized**: Responsive controls that work perfectly on tablets and phones
+- **Professional Standards**: Interface follows modern photo editing application conventions
 
 ## 🌐 Deployment
 
@@ -246,11 +332,14 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 🔮 Future Enhancements
 
-- **Advanced Filters**: Blur, sharpen, noise reduction
-- **Batch Editing**: Process multiple images at once
-- **Custom Presets**: Save and load editing presets
-- **Export Options**: Multiple format and quality options
-- **Keyboard Shortcuts**: Power user productivity features
+- **Additional Filters**: Blur, sharpen, noise reduction, and lens correction
+- **Batch Editing**: Process multiple images at once with consistent settings
+- **Custom Presets**: Save and load editing presets for common workflows
+- **Export Options**: Multiple format and quality options (WEBP, different JPEG qualities)
+- **Keyboard Shortcuts**: Power user productivity features (Ctrl+Z undo, etc.)
+- **Layer System**: Multiple editing layers for advanced compositions
+- **History Panel**: Visual history of all editing operations (beyond just drawing undo)
+- **RAW Support**: Basic RAW image processing capabilities
 
 ## 📄 License
 

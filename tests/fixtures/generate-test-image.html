@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Generate Test Image</title>
+	</head>
+	<body>
+		<canvas id="canvas" width="200" height="200"></canvas>
+		<a id="download" href="#" download="test-image.png">Download Test Image</a>
+
+		<script>
+			const canvas = document.getElementById('canvas');
+			const ctx = canvas.getContext('2d');
+
+			// Create test pattern
+			ctx.fillStyle = '#ff0000';
+			ctx.fillRect(0, 0, 100, 100);
+
+			ctx.fillStyle = '#00ff00';
+			ctx.fillRect(100, 0, 100, 100);
+
+			ctx.fillStyle = '#0000ff';
+			ctx.fillRect(0, 100, 100, 100);
+
+			ctx.fillStyle = '#ffff00';
+			ctx.fillRect(100, 100, 100, 100);
+
+			// Add text
+			ctx.fillStyle = '#ffffff';
+			ctx.font = '20px Arial';
+			ctx.textAlign = 'center';
+			ctx.fillText('TEST', 100, 110);
+
+			// Set up download
+			const dataURL = canvas.toDataURL('image/png');
+			document.getElementById('download').href = dataURL;
+
+			// Auto-trigger download
+			document.getElementById('download').click();
+		</script>
+	</body>
+</html>
