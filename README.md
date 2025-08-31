@@ -6,8 +6,8 @@ A simple, free, and secure browser-based photo editor with essential editing too
 
 ## ✨ Features
 
-- **12 Professional Adjustment Tools**: Exposure, brightness, contrast, highlights, shadows, whites, blacks, saturation, vibrance, clarity, dehaze, and rotation with real-time preview
-- **16 Creative Filters**: Complete collection including grayscale, sepia, invert, vintage, cool, warm, dramatic, soft, vivid, noir, sunset, arctic, emerald, rose, and cyberpunk effects
+- **Professional Adjustment Tools**: Exposure, brightness, contrast, highlights, shadows, whites, blacks, saturation, vibrance, clarity, dehaze, and rotation with real-time preview
+- **Creative Filters**: Complete collection including grayscale, sepia, invert, vintage, cool, warm, dramatic, soft, vivid, noir, sunset, arctic, emerald, rose, and cyberpunk effects
 - **Tabbed Interface**: Professional photo editor workflow with organized Adjust, Filters, and Draw tabs
 - **Enhanced Drawing System**: Professional-quality smooth drawing with undo functionality, customizable brush sizes and colors
 - **Auto-Mode Switching**: Draw mode automatically activates when Draw tab is selected for seamless workflow
@@ -50,7 +50,7 @@ PhotoLab makes basic photo editing accessible and privacy-focused. The project f
 
 - **[Vitest](https://vitest.dev/)** - Unit testing framework
 - **[Playwright](https://playwright.dev/)** - End-to-end testing
-- **Browser Testing** - Real browser environment testing
+- **Cross-Browser Testing** - Chrome and Firefox automated testing in CI
 
 ### Development Tools
 
@@ -106,20 +106,21 @@ npm run test:unit -- --watch
 
 ### Test Coverage
 
-**67 Comprehensive Unit Tests** covering:
+**Comprehensive Unit Tests** covering:
 
-- **Image Processing**: All 16 filters with pixel-level validation and image loading functionality
+- **Image Processing**: All filters with pixel-level validation and image loading functionality
 - **Canvas Operations**: Canvas setup, image drawing, rotation handling, coordinate calculations, and download functionality
 - **Drawing System**: Complete drawing lifecycle, smooth line rendering, undo state management, and jitter reduction
-- **Photo Editor Store**: State initialization, all 12 adjustment properties, reactive updates, debounced operations, and history management
+- **Photo Editor Store**: State initialization, all adjustment properties, reactive updates, debounced operations, and history management
 
 **End-to-End Tests** covering:
 
 - **Complete Workflows**: Full photo editing sessions from upload to download
-- **Filter Gallery**: Testing all 16 filters with visual validation
+- **Filter Gallery**: Testing all filters with visual validation
 - **Drawing Tools**: Brush sizes, colors, undo functionality across user interactions
 - **UI Behavior**: Tab switching, drawing mode activation, reset functionality
 - **Responsive Design**: Mobile and tablet interaction patterns
+- **Cross-Browser**: Automated testing on Chrome and Firefox
 
 **Automated CI/CD**: All tests run on GitHub Actions for every commit, ensuring code quality and functionality
 
@@ -176,8 +177,8 @@ tests/
 ### Key Components
 
 - **ToolsPanel**: Main tabbed container organizing all editing tools
-- **AdjustTab**: 12 professional adjustment sliders (exposure, highlights, shadows, etc.)
-- **FiltersTab**: 16 creative filters with visual previews and descriptions
+- **AdjustTab**: Professional adjustment sliders (exposure, highlights, shadows, etc.)
+- **FiltersTab**: Creative filters with visual previews and descriptions
 - **DrawTab**: Professional drawing tools with undo functionality and auto-activation
 - **PhotoCanvas**: High-performance canvas component for image display and drawing
 - **FileUpload**: Drag & drop file upload interface with format validation
@@ -185,7 +186,7 @@ tests/
 
 ## 🎨 Photo Editing Features
 
-### Professional Adjustment Tools (12 Total)
+### Professional Adjustment Tools
 
 - **Exposure**: Professional exposure compensation (-100 to +100)
 - **Brightness**: Fine-tune overall image lighting (-100 to +100)
@@ -200,7 +201,7 @@ tests/
 - **Dehaze**: Remove atmospheric haze and enhance clarity (-100 to +100)
 - **Rotation**: Rotate images in 90-degree increments
 
-### Creative Filters (16 Total)
+### Creative Filters
 
 **Basic Filters:**
 
@@ -235,7 +236,7 @@ tests/
 - **Undo Functionality**: Drawing-specific undo system (up to 20 operations)
 - **Auto-Activation**: Drawing mode automatically enables when Draw tab is selected
 - **Customizable Brushes**: Adjustable size (1-50px) and full color picker
-- **16 Preset Colors**: Quick access to commonly used drawing colors
+- **Preset Colors**: Quick access to commonly used drawing colors
 
 ## 🎛️ Professional UI/UX Design
 
@@ -243,7 +244,7 @@ tests/
 
 PhotoLab features a professional photo editor workflow with an intuitive tabbed interface:
 
-- **Adjust Tab**: All 12 professional adjustment tools organized in a clean, accessible layout
+- **Adjust Tab**: All professional adjustment tools organized in a clean, accessible layout
 - **Filters Tab**: Visual filter gallery with preview thumbnails and descriptions
 - **Draw Tab**: Complete drawing toolkit with automatic mode switching
 
@@ -301,10 +302,10 @@ firebase deploy
 
 PhotoLab works on all modern browsers:
 
-- **Chrome** 90+ (recommended)
-- **Firefox** 88+
-- **Safari** 14+
-- **Edge** 90+
+- **Chrome** 90+ (recommended, fully tested in CI)
+- **Firefox** 88+ (fully tested in CI)
+- **Safari** 14+ (compatible, manual testing recommended)
+- **Edge** 90+ (Chromium-based, should work like Chrome)
 - **Mobile browsers** (iOS Safari, Chrome Mobile)
 
 ## 🤝 Contributing
