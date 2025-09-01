@@ -85,6 +85,10 @@ beforeAll(() => {
 		toJSON: vi.fn()
 	});
 
+	// Mock pointer capture methods
+	HTMLCanvasElement.prototype.setPointerCapture = vi.fn();
+	HTMLCanvasElement.prototype.releasePointerCapture = vi.fn();
+
 	// Mock Image constructor
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	(globalThis as any).Image = class {
@@ -191,4 +195,37 @@ beforeAll(() => {
 		}
 		return originalCreateElement.call(document, tagName);
 	});
+
+	// Mock PointerEvent for testing
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	(globalThis as any).PointerEvent = class PointerEvent extends MouseEvent {
+		pointerId: number;
+		width: number;
+		height: number;
+		pressure: number;
+		tangentialPressure: number;
+		tiltX: number;
+		tiltY: number;
+		twist: number;
+		altitudeAngle: number;
+		azimuthAngle: number;
+		pointerType: string;
+		isPrimary: boolean;
+
+		constructor(type: string, eventInitDict: PointerEventInit = {}) {
+			super(type, eventInitDict);
+			this.pointerId = eventInitDict.pointerId || 0;
+			this.width = eventInitDict.width || 1;
+			this.height = eventInitDict.height || 1;
+			this.pressure = eventInitDict.pressure || 0;
+			this.tangentialPressure = eventInitDict.tangentialPressure || 0;
+			this.tiltX = eventInitDict.tiltX || 0;
+			this.tiltY = eventInitDict.tiltY || 0;
+			this.twist = eventInitDict.twist || 0;
+			this.altitudeAngle = eventInitDict.altitudeAngle || 0;
+			this.azimuthAngle = eventInitDict.azimuthAngle || 0;
+			this.pointerType = eventInitDict.pointerType || 'mouse';
+			this.isPrimary = eventInitDict.isPrimary || false;
+		}
+	};
 });

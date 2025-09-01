@@ -14,7 +14,7 @@
 	import { createPhotoEditorStore } from '$lib/stores/photoEditor.svelte.js';
 	import { setupCanvas, drawImage, downloadImage } from '$lib/utils/canvasUtils.js';
 	import { applyFilters, loadImage } from '$lib/utils/imageProcessing.js';
-	import { startDrawing, draw, stopDrawing } from '$lib/utils/drawingUtils.js';
+
 
 	// Create the photo editor store
 	const store = createPhotoEditorStore();
@@ -55,18 +55,7 @@
 		drawImageWrapper();
 	}
 
-	// Drawing event handlers
-	function handleStartDrawing(event: MouseEvent) {
-		startDrawing(event, store);
-	}
-
-	function handleDraw(event: MouseEvent) {
-		draw(event, store);
-	}
-
-	function handleStopDrawing() {
-		stopDrawing(store);
-	}
+	// Drawing functionality is now handled directly in PhotoCanvas component
 
 	// Control handlers
 	function handleReset() {
@@ -183,10 +172,7 @@
 				<!-- Canvas Area (Full Width) -->
 				<div>
 					<PhotoCanvas
-						drawingMode={store.drawingMode}
-						onStartDrawing={handleStartDrawing}
-						onDraw={handleDraw}
-						onStopDrawing={handleStopDrawing}
+						store={store}
 						onCanvasMount={(canvas) => store.setCanvas(canvas)}
 					/>
 				</div>

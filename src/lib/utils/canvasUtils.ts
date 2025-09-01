@@ -91,7 +91,7 @@ export function downloadImage(canvas: HTMLCanvasElement | null) {
 	link.click();
 }
 
-export function getCanvasCoordinates(event: MouseEvent, canvas: HTMLCanvasElement) {
+export function getCanvasCoordinates(event: PointerEvent | MouseEvent, canvas: HTMLCanvasElement) {
 	const rect = canvas.getBoundingClientRect();
 	const scaleX = canvas.width / rect.width;
 	const scaleY = canvas.height / rect.height;

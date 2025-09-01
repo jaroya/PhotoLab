@@ -5,7 +5,7 @@ import { getCanvasCoordinates } from './canvasUtils.js';
 let lastX = 0;
 let lastY = 0;
 
-export function startDrawing(event: MouseEvent, store: PhotoEditorStore) {
+export function startDrawing(event: PointerEvent, store: PhotoEditorStore) {
 	const ctx = store.ctx;
 	const canvas = store.canvas;
 
@@ -32,7 +32,7 @@ export function startDrawing(event: MouseEvent, store: PhotoEditorStore) {
 	ctx.moveTo(coords.x, coords.y);
 }
 
-export function draw(event: MouseEvent, store: PhotoEditorStore) {
+export function draw(event: PointerEvent, store: PhotoEditorStore) {
 	const ctx = store.ctx;
 	const canvas = store.canvas;
 

@@ -1,0 +1,8 @@
+{
+	"editor.disableMonospaceOptimizations": true,
+	"editor.fontLigatures": false,
+	"terminal.integrated.gpuAcceleration": "off",
+	"window.titleBarStyle": "custom",
+	"window.autoDetectHighContrast": false,
+	"disable-hardware-acceleration": true
+}

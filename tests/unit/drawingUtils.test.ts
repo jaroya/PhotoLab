@@ -37,9 +37,10 @@ describe('Drawing Utilities', () => {
 
 	describe('startDrawing', () => {
 		it('should initialize drawing when drawing mode is active', () => {
-			const event = new MouseEvent('mousedown', {
+			const event = new PointerEvent('pointerdown', {
 				clientX: 50,
-				clientY: 50
+				clientY: 50,
+				pointerId: 1
 			});
 
 			startDrawing(event, mockStore);
@@ -54,9 +55,10 @@ describe('Drawing Utilities', () => {
 
 		it('should not start drawing when drawing mode is inactive', () => {
 			mockStore.drawingMode = false;
-			const event = new MouseEvent('mousedown', {
+			const event = new PointerEvent('pointerdown', {
 				clientX: 50,
-				clientY: 50
+				clientY: 50,
+				pointerId: 1
 			});
 
 			startDrawing(event, mockStore);
@@ -67,9 +69,10 @@ describe('Drawing Utilities', () => {
 
 		it('should not start drawing when context is null', () => {
 			mockStore.ctx = null;
-			const event = new MouseEvent('mousedown', {
+			const event = new PointerEvent('pointerdown', {
 				clientX: 50,
-				clientY: 50
+				clientY: 50,
+				pointerId: 1
 			});
 
 			startDrawing(event, mockStore);
@@ -79,9 +82,10 @@ describe('Drawing Utilities', () => {
 		});
 
 		it('should save canvas state before starting to draw', () => {
-			const event = new MouseEvent('mousedown', {
+			const event = new PointerEvent('pointerdown', {
 				clientX: 25,
-				clientY: 25
+				clientY: 25,
+				pointerId: 1
 			});
 
 			startDrawing(event, mockStore);
@@ -95,9 +99,10 @@ describe('Drawing Utilities', () => {
 			mockStore.brushSize = 10;
 			mockStore.brushColor = '#00ff00';
 
-			const event = new MouseEvent('mousedown', {
+			const event = new PointerEvent('pointerdown', {
 				clientX: 50,
-				clientY: 50
+				clientY: 50,
+				pointerId: 1
 			});
 
 			startDrawing(event, mockStore);
@@ -112,16 +117,18 @@ describe('Drawing Utilities', () => {
 			mockStore.isDrawing = true;
 
 			// Start at position (10, 10)
-			const startEvent = new MouseEvent('mousedown', {
+			const startEvent = new PointerEvent('pointerdown', {
 				clientX: 10,
-				clientY: 10
+				clientY: 10,
+				pointerId: 1
 			});
 			startDrawing(startEvent, mockStore);
 
 			// Move to position (20, 20)
-			const moveEvent = new MouseEvent('mousemove', {
+			const moveEvent = new PointerEvent('pointermove', {
 				clientX: 20,
-				clientY: 20
+				clientY: 20,
+				pointerId: 1
 			});
 
 			const strokeSpy = vi.spyOn(ctx, 'stroke');
@@ -133,9 +140,10 @@ describe('Drawing Utilities', () => {
 		it('should not draw when isDrawing is false', () => {
 			mockStore.isDrawing = false;
 
-			const event = new MouseEvent('mousemove', {
+			const event = new PointerEvent('pointermove', {
 				clientX: 50,
-				clientY: 50
+				clientY: 50,
+				pointerId: 1
 			});
 
 			const strokeSpy = vi.spyOn(ctx, 'stroke');
@@ -148,9 +156,10 @@ describe('Drawing Utilities', () => {
 			mockStore.isDrawing = true;
 			mockStore.drawingMode = false;
 
-			const event = new MouseEvent('mousemove', {
+			const event = new PointerEvent('pointermove', {
 				clientX: 50,
-				clientY: 50
+				clientY: 50,
+				pointerId: 1
 			});
 
 			const strokeSpy = vi.spyOn(ctx, 'stroke');
@@ -163,16 +172,18 @@ describe('Drawing Utilities', () => {
 			mockStore.isDrawing = true;
 
 			// Start drawing
-			const startEvent = new MouseEvent('mousedown', {
+			const startEvent = new PointerEvent('pointerdown', {
 				clientX: 50,
-				clientY: 50
+				clientY: 50,
+				pointerId: 1
 			});
 			startDrawing(startEvent, mockStore);
 
 			// Move less than 2 pixels
-			const moveEvent = new MouseEvent('mousemove', {
+			const moveEvent = new PointerEvent('pointermove', {
 				clientX: 50.5,
-				clientY: 50.5
+				clientY: 50.5,
+				pointerId: 1
 			});
 
 			const strokeSpy = vi.spyOn(ctx, 'stroke');
@@ -186,16 +197,18 @@ describe('Drawing Utilities', () => {
 			mockStore.isDrawing = true;
 
 			// Start drawing
-			const startEvent = new MouseEvent('mousedown', {
+			const startEvent = new PointerEvent('pointerdown', {
 				clientX: 10,
-				clientY: 10
+				clientY: 10,
+				pointerId: 1
 			});
 			startDrawing(startEvent, mockStore);
 
 			// Move significantly
-			const moveEvent = new MouseEvent('mousemove', {
+			const moveEvent = new PointerEvent('pointermove', {
 				clientX: 30,
-				clientY: 30
+				clientY: 30,
+				pointerId: 1
 			});
 
 			const quadraticCurveSpy = vi.spyOn(ctx, 'quadraticCurveTo');
@@ -223,9 +236,10 @@ describe('Drawing Utilities', () => {
 	describe('Drawing workflow integration', () => {
 		it('should complete a full drawing cycle', () => {
 			// Start drawing
-			const startEvent = new MouseEvent('mousedown', {
+			const startEvent = new PointerEvent('pointerdown', {
 				clientX: 10,
-				clientY: 10
+				clientY: 10,
+				pointerId: 1
 			});
 			startDrawing(startEvent, mockStore);
 			expect(mockStore.setIsDrawing).toHaveBeenCalledWith(true);
@@ -234,9 +248,10 @@ describe('Drawing Utilities', () => {
 			mockStore.isDrawing = true;
 
 			// Draw some strokes
-			const moveEvent1 = new MouseEvent('mousemove', {
+			const moveEvent1 = new PointerEvent('pointermove', {
 				clientX: 20,
-				clientY: 20
+				clientY: 20,
+				pointerId: 1
 			});
 			const strokeSpy = vi.spyOn(ctx, 'stroke');
 			draw(moveEvent1, mockStore);
@@ -249,18 +264,20 @@ describe('Drawing Utilities', () => {
 
 		it('should save state only once per drawing session', () => {
 			// Start first drawing session
-			const event1 = new MouseEvent('mousedown', {
+			const event1 = new PointerEvent('pointerdown', {
 				clientX: 10,
-				clientY: 10
+				clientY: 10,
+				pointerId: 1
 			});
 			startDrawing(event1, mockStore);
 			expect(mockStore.saveState).toHaveBeenCalledTimes(1);
 
 			// Draw multiple strokes in same session
 			mockStore.isDrawing = true;
-			const moveEvent = new MouseEvent('mousemove', {
+			const moveEvent = new PointerEvent('pointermove', {
 				clientX: 30,
-				clientY: 30
+				clientY: 30,
+				pointerId: 1
 			});
 			draw(moveEvent, mockStore);
 			draw(moveEvent, mockStore);
@@ -272,9 +289,10 @@ describe('Drawing Utilities', () => {
 			stopDrawing(mockStore);
 			mockStore.isDrawing = false;
 
-			const event2 = new MouseEvent('mousedown', {
+			const event2 = new PointerEvent('pointerdown', {
 				clientX: 50,
-				clientY: 50
+				clientY: 50,
+				pointerId: 1
 			});
 			startDrawing(event2, mockStore);
 
